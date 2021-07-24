@@ -1,17 +1,17 @@
 #ifndef CSVREADER_H
 #define CSVREADER_H
 
-#include <fstream>
-#include <vector>
+#include "../headers/abstractreader.h"
+#include "../headers/splitFunc.h"
 
-class CSVReader
+class CSVReader : public AbstractReader
 {
 public:
-    CSVReader(std::ifstream);
-    //try to open file
-    bool fileFine(std::ifstream);
-    //read file and pars each line into tokens
-    std::vector<std::vector<std::string>> read(std::ifstream, std::string);
+    CSVReader(std::string filePath, std::string fileName);
+    bool is_open() override;
+    std::vector<std::vector<std::string>> read() override;
+private:
+    std::ifstream fin;
 };
 
 #endif // CSVREADER_H
