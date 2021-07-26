@@ -8,6 +8,7 @@ class CSVReader : public AbstractReader
 {
 public:
     CSVReader(std::string filePath, std::string fileName);
+    ~CSVReader();
     bool is_open() override;
     std::vector<std::vector<std::string>> read() override;
 private:

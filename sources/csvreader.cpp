@@ -6,6 +6,11 @@ CSVReader::CSVReader(std::string filePath,std::string fileName)
     this->fin = std::ifstream (filePath + '\\' + fileName);
 }
 
+CSVReader::~CSVReader()
+{
+    this->fin.close();
+}
+
 bool CSVReader::is_open()
 {
     if (!fin.is_open()){

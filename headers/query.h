@@ -12,8 +12,13 @@ struct query
     std::string model = "";
     int color = -1;
     int year = -1;
+    query& operator=(const query &n);
+    bool operator== (const query &n);
 };
 
 void setReqvParam(query&, std::string);
+void getRequest(std::vector<Car>&,query&);
+
+const query DEFAULT_QUERY;
 
 #endif // QUERY_H
