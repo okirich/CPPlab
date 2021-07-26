@@ -16,6 +16,16 @@ Car::Car(int id, std::string model, int color, int year)
     this->year = year;
 }
 
+int Car::getId()
+{
+    return this->id;
+}
+
+std::string Car::getModel()
+{
+    return this->model;
+}
+
 int Car::getColor()
 {
     return this->color;
