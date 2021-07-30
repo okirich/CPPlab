@@ -13,6 +13,7 @@ public:
     std::vector<std::vector<std::string>> read() override;
 private:
     std::ifstream fin;
+    int strCount;
 };
 
 #endif // CSVREADER_H

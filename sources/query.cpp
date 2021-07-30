@@ -61,7 +61,7 @@ void setReqvParam(query& reqv, std::string query)
         }
        else if (it->compare("<color>")==0)
         {
-            reqv.model = std::stoi(*++it);
+            reqv.color = std::stoi(*++it);
         }
         else if (it->compare("<year>")==0)
         {
@@ -74,7 +74,7 @@ void setReqvParam(query& reqv, std::string query)
     }
 }
 
-void getRequest(std::vector<Car>& cars,query& reqv)
+std::vector<Car> getRequest(std::vector<Car> cars,query& reqv)
 {
     if (reqv.id != -1)
     {
@@ -116,4 +116,5 @@ void getRequest(std::vector<Car>& cars,query& reqv)
             }
         }
     }
+    return cars;
 }

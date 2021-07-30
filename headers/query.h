@@ -17,7 +17,7 @@ struct query
 };
 
 void setReqvParam(query&, std::string);
-void getRequest(std::vector<Car>&,query&);
+std::vector<Car> getRequest(std::vector<Car>,query&);
 
 const query DEFAULT_QUERY;
 
