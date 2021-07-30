@@ -1,13 +1,11 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
-
-const std::string filePath = "C:\\Users\\Kirill\\Documents\\CarFinder";
-const std::string fileName = "cars.txt";
+#include "./headers/Constants.h"
 
 std::vector<Car> cars;
 query reqv;
-auto db = CSVReader(filePath,fileName);     //создание CSVreader объекта
-auto const dbvect = db.read();
+
+int Car::count = 0;
 // обнавление результирующей таблицы
 void tabelReload(QTableWidget& Tabel,std::vector<Car>& cars)
 {
@@ -26,14 +24,16 @@ void tabelReload(QTableWidget& Tabel,std::vector<Car>& cars)
     }
 };
 
-void carCreator(std::vector<std::vector<std::string>> db,std::vector<Car>& cars)
+std::vector<Car> carCreator(CSVReader &db)
 {
-    cars.clear();
+    std::vector<std::vector<std::string>> tmp = db.read();
+    std::vector<Car> cars;
     // создание Сar объектов из файла CSV
-    for (auto strVect : db)
+    for (auto strVect : tmp)
     {
         cars.emplace_back(Car(strVect));
     }
+    return cars;
 };
 
 MainWindow::MainWindow(QWidget *parent)
@@ -41,7 +41,8 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    carCreator(dbvect,cars);
+    auto db = CSVReader(filePath,fileName);
+    cars = carCreator(db);
     tabelReload(*ui->tableWidget,cars);
 }
 
@@ -56,7 +57,11 @@ void MainWindow::on_findBtn_clicked()
 
     if (reqv == DEFAULT_QUERY)
     {
-        carCreator(dbvect,cars);
+        Car::setCount(0);
+        auto db = CSVReader(filePath,fileName);
+        cars.clear();
+        cars = carCreator(db);
+        auto filtred = cars;
     }
     try
     {
@@ -66,6 +71,13 @@ void MainWindow::on_findBtn_clicked()
     {
         std::cerr << "Invalid argument" << std::endl;
     }
-    getRequest(cars,reqv);
-    tabelReload(*ui->tableWidget,cars);
+    auto filtred = getRequest(cars,reqv);
+    tabelReload(*ui->tableWidget,filtred);
+}
+
+void MainWindow::on_AddBtn_clicked()
+{
+    secondwindow *window = new secondwindow(this);
+    window->setModal(true);
+    window->show();
 }

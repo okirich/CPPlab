@@ -25,8 +25,10 @@ std::vector<std::vector<std::string>> CSVReader::read()
     std::vector<std::vector<std::string>> out;
     std::string str_buff;
     while (std::getline(this->fin,str_buff)) {
+        this->strCount ++;
         auto tokens = split(str_buff, ';');
         out.emplace_back(tokens);
     }
+    this->fin.close();
     return out;
 }
