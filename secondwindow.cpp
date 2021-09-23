@@ -55,13 +55,20 @@ void secondwindow::dataReady()
 
 void secondwindow::on_OkBtn_clicked()
 {
-    auto db = CSVWriter (filePath,fileName);
-    std::vector<std::string> tmp;
-    tmp.emplace_back("0");//TODO Здесь должен быть уникальный ID!!!
-    tmp.emplace_back(ui->modelLE->text().toStdString());
-    tmp.emplace_back(mapping(Colors,ui->comboBox->currentText().toStdString()));
-    tmp.emplace_back(ui->yearLE->text().toStdString());
-    auto tmp1 = Car(tmp).repr();
-    db.write(tmp1);
+    try {
+        auto db = CSVWriter (filePath,fileName);
+        std::vector<std::string> tmp;
+        tmp.emplace_back("0");//TODO Здесь должен быть уникальный ID!!!
+        tmp.emplace_back(ui->modelLE->text().toStdString());
+        tmp.emplace_back(mapping(Colors,ui->comboBox->currentText().toStdString()));
+        tmp.emplace_back(ui->yearLE->text().toStdString());
+        auto tmp1 = Car(tmp).repr();
+        db.write(tmp1);
+    }  catch (const std::invalid_argument& ia) {
+        myerror err;
+        connect(&err,SIGNAL(valueChanged(QString)),this->parent()->findChild<mytextbrowser *>("error")\
+                ,SLOT(errorReceived(QString)));
+        err.setErrorMsg("<year> must be int!");
+    }
     this->~secondwindow();
 }

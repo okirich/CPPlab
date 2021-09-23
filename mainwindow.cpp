@@ -69,7 +69,10 @@ void MainWindow::on_findBtn_clicked()
     }
     catch (const std::invalid_argument& ia)
     {
-        std::cerr << "Invalid argument" << std::endl;
+        myerror err;
+        connect(&err,SIGNAL(valueChanged(QString)),ui->error,SLOT(errorReceived(QString)));
+        err.setErrorMsg("Check the query params:<year> and <color> must be int!");
+        //std::cerr << "Invalid argument" << std::endl;
     }
     auto filtred = getRequest(cars,reqv);
     tabelReload(*ui->tableWidget,filtred);

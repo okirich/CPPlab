@@ -7,6 +7,9 @@
 #include "./headers/csvwriter.h"
 #include "./headers/car.h"
 
+#include "myerror.h"
+#include "mytextbrowser.h"
+
 namespace Ui {
 class secondwindow;
 }

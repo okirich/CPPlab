@@ -11,6 +11,9 @@
 #include "./headers/csvreader.h"
 #include "./headers/car.h"
 
+#include "myerror.h"
+#include "mytextbrowser.h"
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui {class MainWindow;}

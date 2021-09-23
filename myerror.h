@@ -10,13 +10,13 @@ class myerror : public QObject
 public:
     explicit myerror(QObject *parent = nullptr);
 private:
-    std::string message;
+    QString message;
 
 public slots:
-    void setErrorMsg(std::string msg);
+    void setErrorMsg(QString msg);
 
 signals:
-    void valueChanged(std::string msg);
+    void valueChanged(QString msg);
 };
 
 #endif // MYERROR_H
