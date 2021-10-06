@@ -10,13 +10,25 @@ Car::Car(std::vector<std::string>tokens)
     this->id = count;
 }
 
-Car::Car(int id,std::string model, int color, int year)
+Car::Car(std::string model, int color, int year)
 {
-    this->id = id;
+
     this->model = model;
     this->color = color;
     this->year = year;
     count ++;
+    this->id = count;
+}
+
+Car &Car::operator=(Car&& tmp)
+{
+    if (&tmp == this)
+                return *this;
+    model = tmp.model;
+    color = tmp.color;
+    year = tmp.year;
+    id = tmp.id;
+    return *this;
 }
 
 std::string Car::repr()
@@ -63,9 +75,8 @@ bool operator<(const Car &c1,const Car &c2)
     return c1.year < c2.year;
 }
 
-std::ostream& operator<< (std::ostream &out,const Car &c1)
+std::ostream& operator<< (std::ostream &out,Car &c1)
 {
-    out << c1.id << ';' << c1.model \
-        << ';' << c1.color << ';' << c1.year;
+    out << c1.repr();
     return out;
 }
