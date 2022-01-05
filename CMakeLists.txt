@@ -35,3 +35,17 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
 endif()
 
 target_link_libraries(CarFinder PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+
+include(FetchContent)
+
+FetchContent_Declare(json
+  GIT_REPOSITORY https://github.com/ArthurSonzogni/nlohmann_json_cmake_fetchcontent
+  GIT_TAG v3.10.4)
+
+FetchContent_GetProperties(json)
+if(NOT json_POPULATED)
+  FetchContent_Populate(json)
+  add_subdirectory(${json_SOURCE_DIR} ${json_BINARY_DIR} EXCLUDE_FROM_ALL)
+endif()
+
+target_link_libraries(CarFinder PRIVATE nlohmann_json::nlohmann_json)

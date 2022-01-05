@@ -14,6 +14,7 @@
 #include "myerror.h"
 #include "mytextbrowser.h"
 
+//#include "./headers/jsonreader.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {class MainWindow;}
@@ -32,6 +33,8 @@ private slots:
     void on_findBtn_clicked();
 
     void on_AddBtn_clicked();
+
+    //void on_FileBtn_clicked();
 
 private:
     Ui::MainWindow *ui;

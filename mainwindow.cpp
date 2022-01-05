@@ -83,3 +83,10 @@ void MainWindow::on_AddBtn_clicked()
     window->setModal(true);
     window->show();
 }
+
+//void MainWindow::on_FileBtn_clicked()
+//{
+//    auto db = JSONReader(filePath,"cars_exmpl.json");
+//    std::cout << db.is_open() <<'\n';
+//    db.read();
+//}
