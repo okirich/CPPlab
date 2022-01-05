@@ -4,6 +4,8 @@
 #include <string>
 #include <map>
 
+namespace constants {
+
 
 const std::map<int,std::string> Colors = {
     {0,"RED"},
@@ -15,6 +17,6 @@ const std::map<int,std::string> Colors = {
 };
 
 const std::string filePath = "C:\\Users\\Kirill\\Documents\\CarFinder";
-const std::string fileName = "cars.txt";
-
+std::string fileName = "cars.txt";
+}
 #endif // COLORS_H

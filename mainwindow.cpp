@@ -1,11 +1,12 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
-#include "./headers/Constants.h"
+#include "mainwindow.h"
+
 
 std::vector<Car> cars;
 query reqv;
 
-int Car::count = 0;
+int Car::count = -1;
 // обнавление результирующей таблицы
 void tabelReload(QTableWidget& Tabel,std::vector<Car>& cars)
 {
@@ -24,7 +25,7 @@ void tabelReload(QTableWidget& Tabel,std::vector<Car>& cars)
     }
 };
 
-std::vector<Car> carCreator(CSVReader &db)
+std::vector<Car> carCreator(AbstractReader &db)
 {
     std::vector<std::vector<std::string>> tmp = db.read();
     std::vector<Car> cars;
@@ -41,9 +42,6 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    auto db = CSVReader(filePath,fileName);
-    cars = carCreator(db);
-    tabelReload(*ui->tableWidget,cars);
 }
 
 MainWindow::~MainWindow()
@@ -58,7 +56,9 @@ void MainWindow::on_findBtn_clicked()
     if (reqv == DEFAULT_QUERY)
     {
         Car::setCount(0);
-        auto db = CSVReader(filePath,fileName);
+        //TODO:дописать вызов парсера!!!
+        //auto db = JSONReader(constants::filePath,constants::fileName);
+        auto db = CSVReader(constants::filePath,constants::fileName);
         cars.clear();
         cars = carCreator(db);
         auto filtred = cars;
@@ -83,3 +83,9 @@ void MainWindow::on_AddBtn_clicked()
     window->setModal(true);
     window->show();
 }
+
+
+//void MainWindow::on_selectBtn_clicked()
+//{
+//    constants::fileName = QFileDialog::getOpenFileName().toStdString();
+//}
