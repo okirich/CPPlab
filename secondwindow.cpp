@@ -7,7 +7,7 @@ secondwindow::secondwindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    for(auto it = constants::Colors.begin();it != constants::Colors.end(); ++it)
+    for(auto it = Colors.begin();it != Colors.end(); ++it)
     {
         ui->comboBox->addItem(QString().fromStdString(it->second));
     }
@@ -56,11 +56,11 @@ void secondwindow::dataReady()
 void secondwindow::on_OkBtn_clicked()
 {
     try {
-        auto db = CSVWriter (constants::filePath,constants::fileName);
+        auto db = CSVWriter (filePath,fileName);
         std::vector<std::string> tmp;
-        tmp.emplace_back("0");
+        tmp.emplace_back("0");//TODO Здесь должен быть уникальный ID!!!
         tmp.emplace_back(ui->modelLE->text().toStdString());
-        tmp.emplace_back(mapping(constants::Colors,ui->comboBox->currentText().toStdString()));
+        tmp.emplace_back(mapping(Colors,ui->comboBox->currentText().toStdString()));
         tmp.emplace_back(ui->yearLE->text().toStdString());
         auto tmp1 = Car(tmp).repr();
         db.write(tmp1);

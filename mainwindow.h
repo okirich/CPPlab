@@ -2,7 +2,6 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QFileDialog>
 #include <iostream>
 
 #include "./secondwindow.h"
@@ -11,8 +10,6 @@
 #include "./headers/query.h"
 #include "./headers/csvreader.h"
 #include "./headers/car.h"
-#include "./headers/Constants.h"
-#include "./headers/jsonreader.h"
 
 #include "myerror.h"
 #include "mytextbrowser.h"
@@ -35,8 +32,6 @@ private slots:
     void on_findBtn_clicked();
 
     void on_AddBtn_clicked();
-
-    //void on_selectBtn_clicked();
 
 private:
     Ui::MainWindow *ui;
