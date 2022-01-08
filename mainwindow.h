@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QFileDialog>
 #include <iostream>
 
 #include "./secondwindow.h"
@@ -14,6 +15,7 @@
 #include "myerror.h"
 #include "mytextbrowser.h"
 
+#include "./headers/jsonreader.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {class MainWindow;}
@@ -33,7 +35,11 @@ private slots:
 
     void on_AddBtn_clicked();
 
+    void on_FileBtn_clicked();
+
 private:
     Ui::MainWindow *ui;
+protected:
+    std::string fileName = "C:\\Users\\Kirill\\Documents\\CarFinder\\cars.txt";
 };
 #endif // MAINWINDOW_H

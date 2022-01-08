@@ -6,7 +6,7 @@ Car::Car(std::vector<std::string>tokens)
     this->model = tokens[1];
     this->color = std::stoi(tokens[2]);
     this->year = std::stoi(tokens[3]);
-    count ++;
+    count++;
     this->id = count;
 }
 

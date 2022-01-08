@@ -1,11 +1,19 @@
 #include "secondwindow.h"
 #include "ui_secondwindow.h"
 
+std::string fileName;
+
 secondwindow::secondwindow(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::secondwindow)
 {
     ui->setupUi(this);
+    std::ifstream init("./init.txt");
+    if(init.is_open()){
+        std::string tmp;
+        getline(init,tmp);
+        fileName = tmp;
+    }
 
     for(auto it = Colors.begin();it != Colors.end(); ++it)
     {
@@ -56,9 +64,9 @@ void secondwindow::dataReady()
 void secondwindow::on_OkBtn_clicked()
 {
     try {
-        auto db = CSVWriter (filePath,fileName);
+        auto db = CSVWriter(fileName);
         std::vector<std::string> tmp;
-        tmp.emplace_back("0");//TODO Здесь должен быть уникальный ID!!!
+        tmp.emplace_back("0");
         tmp.emplace_back(ui->modelLE->text().toStdString());
         tmp.emplace_back(mapping(Colors,ui->comboBox->currentText().toStdString()));
         tmp.emplace_back(ui->yearLE->text().toStdString());

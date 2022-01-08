@@ -1,9 +1,9 @@
 #include "../headers/csvreader.h"
 
 
-CSVReader::CSVReader(std::string filePath,std::string fileName)
+CSVReader::CSVReader(std::string fileName)
 {
-    this->fin = std::ifstream (filePath + '\\' + fileName);
+    this->fin = std::ifstream (fileName);
 }
 
 CSVReader::~CSVReader()
@@ -14,7 +14,6 @@ CSVReader::~CSVReader()
 bool CSVReader::is_open()
 {
     if (!fin.is_open()){
-        std::cout << "Couldn't open file!" << std::endl;
         return false;
     }
     return true;
