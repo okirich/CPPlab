@@ -5,7 +5,14 @@
 std::vector<Car> cars;
 query reqv;
 
-int Car::count = 0;
+int type;
+
+enum TypeOfFile{
+    CSV,
+    JSON,
+};
+
+//int Car::count = 0;
 // обнавление результирующей таблицы
 void tabelReload(QTableWidget& Tabel,std::vector<Car>& cars)
 {
@@ -24,7 +31,7 @@ void tabelReload(QTableWidget& Tabel,std::vector<Car>& cars)
     }
 };
 
-std::vector<Car> carCreator(CSVReader &db)
+std::vector<Car> carCreator(AbstractReader &db)
 {
     std::vector<std::vector<std::string>> tmp = db.read();
     std::vector<Car> cars;
@@ -41,9 +48,9 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    auto db = CSVReader(filePath,fileName);
-    cars = carCreator(db);
-    tabelReload(*ui->tableWidget,cars);
+//    auto db = CSVReader(fileName);
+//    cars = carCreator(db);
+//    tabelReload(*ui->tableWidget,cars);
 }
 
 MainWindow::~MainWindow()
@@ -54,14 +61,21 @@ MainWindow::~MainWindow()
 void MainWindow::on_findBtn_clicked()
 {
     std::string query = ui->queryLine->text().toStdString();
-
     if (reqv == DEFAULT_QUERY)
     {
-        Car::setCount(0);
-        auto db = CSVReader(filePath,fileName);
-        cars.clear();
-        cars = carCreator(db);
-        auto filtred = cars;
+        if(type == 0){
+            //Car::setCount(0);
+            auto db = CSVReader(fileName);
+            cars.clear();
+            cars = carCreator(db);
+            auto filtred = cars;
+        }else{
+            //Car::setCount(0);
+            auto db = JSONReader(fileName);
+            cars.clear();
+            cars = carCreator(db);
+            auto filtred = cars;
+        }
     }
     try
     {
@@ -84,9 +98,26 @@ void MainWindow::on_AddBtn_clicked()
     window->show();
 }
 
-//void MainWindow::on_FileBtn_clicked()
-//{
+void MainWindow::on_FileBtn_clicked()
+{
+    fileName = QFileDialog::getOpenFileName
+            (this,"","./",tr("Text files(*.txt *.csv *.json)")).toStdString();
+    if (fileName.rfind(".json")!=std::string::npos){
+        type = JSON;
+    }else{
+        type = CSV;
+    }
+    std::ofstream init;
+    init.open("./init.txt");
+    if(init.is_open()){
+        init << fileName;
+    }
 //    auto db = JSONReader(filePath,"cars_exmpl.json");
-//    std::cout << db.is_open() <<'\n';
+//    if(!db.is_open()){
+//        myerror err;
+//        connect(&err,SIGNAL(valueChanged(QString)),ui->error,SLOT(errorReceived(QString)));
+//        err.setErrorMsg("Couldn't open the file!");
+//        return;
+//    }
 //    db.read();
-//}
+}

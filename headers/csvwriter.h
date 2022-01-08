@@ -7,7 +7,7 @@
 class CSVWriter
 {
 public:
-    CSVWriter(std::string filePath, std::string fileName);
+    CSVWriter(std::string fileName);
     ~CSVWriter();
     void write(std::string);
 private:

@@ -14,7 +14,4 @@ const std::map<int,std::string> Colors = {
     {5,"YELLOW"}
 };
 
-const std::string filePath = "C:\\Users\\Kirill\\Documents\\CarFinder";
-const std::string fileName = "cars.txt";
-
 #endif // COLORS_H

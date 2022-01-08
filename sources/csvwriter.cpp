@@ -1,13 +1,13 @@
 #include ".\headers\csvwriter.h"
 
-CSVWriter::CSVWriter(std::string filePath, std::string fileName)
+CSVWriter::CSVWriter(std::string fileName)
 {
-    this->fout.open(filePath+"\\"+fileName,std::ofstream::app);
+    this->fout.open(fileName,std::ofstream::app);
 }
 
 CSVWriter::~CSVWriter()
 {
-    //this->fout.close();
+    this->fout.close();
 }
 
 void CSVWriter::write(std::string str)

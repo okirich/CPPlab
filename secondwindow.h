@@ -10,9 +10,9 @@
 #include "myerror.h"
 #include "mytextbrowser.h"
 
-namespace Ui {
-class secondwindow;
-}
+QT_BEGIN_NAMESPACE
+namespace Ui {class secondwindow;}
+QT_END_NAMESPACE
 
 class secondwindow : public QDialog
 {

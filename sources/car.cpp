@@ -6,8 +6,8 @@ Car::Car(std::vector<std::string>tokens)
     this->model = tokens[1];
     this->color = std::stoi(tokens[2]);
     this->year = std::stoi(tokens[3]);
-    count ++;
-    this->id = count;
+//    count++;
+//    this->id = count;
 }
 
 Car::Car(std::string model, int color, int year)
@@ -16,8 +16,8 @@ Car::Car(std::string model, int color, int year)
     this->model = model;
     this->color = color;
     this->year = year;
-    count ++;
-    this->id = count;
+    //count ++;
+    //this->id = count;
 }
 
 Car &Car::operator=(Car&& tmp)
@@ -65,10 +65,10 @@ int Car::getYear()
     return this->year;
 }
 
-void Car::setCount(int cnt)
-{
-    count = cnt;
-}
+//void Car::setCount(int cnt)
+//{
+//    count = cnt;
+//}
 
 bool operator<(const Car &c1,const Car &c2)
 {

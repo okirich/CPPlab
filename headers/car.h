@@ -29,7 +29,7 @@ protected:
     std::string model;
     int color;
     int year;
-private:
-    static int count;
+//private:
+//    static int count;
 };
 #endif // CAR_H
