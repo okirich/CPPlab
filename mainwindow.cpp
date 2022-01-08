@@ -12,7 +12,7 @@ enum TypeOfFile{
     JSON,
 };
 
-//int Car::count = 0;
+int Car::count = 0;
 // обнавление результирующей таблицы
 void tabelReload(QTableWidget& Tabel,std::vector<Car>& cars)
 {
@@ -64,14 +64,26 @@ void MainWindow::on_findBtn_clicked()
     if (reqv == DEFAULT_QUERY)
     {
         if(type == 0){
-            //Car::setCount(0);
+            Car::setCount(0);
             auto db = CSVReader(fileName);
+            if(!db.is_open()){
+                    myerror err;
+                    connect(&err,SIGNAL(valueChanged(QString)),ui->error,SLOT(errorReceived(QString)));
+                    err.setErrorMsg("Couldn't open the file!");
+                    return;
+                }
             cars.clear();
             cars = carCreator(db);
             auto filtred = cars;
         }else{
-            //Car::setCount(0);
+            Car::setCount(0);
             auto db = JSONReader(fileName);
+            if(!db.is_open()){
+                    myerror err;
+                    connect(&err,SIGNAL(valueChanged(QString)),ui->error,SLOT(errorReceived(QString)));
+                    err.setErrorMsg("Couldn't open the file!");
+                    return;
+                }
             cars.clear();
             cars = carCreator(db);
             auto filtred = cars;
@@ -112,12 +124,4 @@ void MainWindow::on_FileBtn_clicked()
     if(init.is_open()){
         init << fileName;
     }
-//    auto db = JSONReader(filePath,"cars_exmpl.json");
-//    if(!db.is_open()){
-//        myerror err;
-//        connect(&err,SIGNAL(valueChanged(QString)),ui->error,SLOT(errorReceived(QString)));
-//        err.setErrorMsg("Couldn't open the file!");
-//        return;
-//    }
-//    db.read();
 }
