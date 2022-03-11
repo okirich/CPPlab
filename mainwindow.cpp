@@ -49,9 +49,13 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-//    auto db = CSVReader(fileName);
-//    cars = carCreator(db);
-//    tabelReload(*ui->tableWidget,cars);
+
+    /////
+    Car c;
+    CSVReader rd("C:\\Users\\Kirill\\Documents\\CarFinder\\cars.txt");
+    &rd >> c;
+    //while (rd >> c)
+    //std::cout << c << std::endl;
 }
 
 MainWindow::~MainWindow()

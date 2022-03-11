@@ -34,12 +34,9 @@ std::vector<std::vector<std::string> > JSONReader::read()
     return vectBuf;
 }
 
-Car &JSONReader::operator>>(AbstractReader &)
+Car JSONReader::operator>>(AbstractReader &)
 {
-    //std::vector<std::string> vectBuf;
     json j;
-    //std::string str_buff;
-    //std::getline(this->fin,str_buff);
     std::vector<std::string> tokenString;
     j = json::parse(this->fin);
     tokenString.emplace_back(j["id"].dump());
@@ -48,4 +45,9 @@ Car &JSONReader::operator>>(AbstractReader &)
     tokenString.emplace_back(j["year"].dump());
     auto out = new Car(tokenString);
     return *out;
+}
+
+JSONReader::operator bool()
+{
+    return true;
 }

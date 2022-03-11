@@ -13,7 +13,8 @@ public:
     ~JSONReader();
     bool is_open() override;
     std::vector<std::vector<std::string>> read() override;
-    Car& operator>>(AbstractReader &) override;
+    Car operator>>(AbstractReader &) override;
+    operator bool() override;
 private:
     std::ifstream fin;
 };
