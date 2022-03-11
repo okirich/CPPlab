@@ -32,14 +32,14 @@ std::vector<std::vector<std::string>> CSVReader::read()
     return out;
 }
 
-Car CSVReader::operator >>(AbstractReader &)
+Car CSVReader::operator >>(Car& out)
 {
     std::string str_buff;
     std::getline(this->fin,str_buff);
     this->strCount ++;
     auto tokens = checkCSV(str_buff);
     this->fin.close();
-    auto out = Car(tokens);
+    out = Car(tokens);
     return out;
 }
 

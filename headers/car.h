@@ -16,8 +16,7 @@ public:
     Car& operator=(const Car& parent)=default;
     Car(Car&& tmp)=default;
     Car& operator=(Car&& tmp);
-    friend bool operator<(const Car &c1,const Car &c2);
-    friend std::ostream& operator<<(std::ostream &out,const Car &c1);
+    friend bool operator<(const Car &c1,const Car &c2);    
     std::string repr();
     int getId();
     std::string getModel();
@@ -32,4 +31,7 @@ protected:
 private:
     static int count;
 };
+
+std::ostream& operator<<(std::ostream &out, Car c1);
+
 #endif // CAR_H

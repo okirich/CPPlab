@@ -8,14 +8,16 @@
 
 class AbstractReader
 {
+private:
+    std::ifstream fin;
 public:
     AbstractReader();
     virtual std::vector<std::vector<std::string>> read() = 0;
     virtual bool is_open() = 0;
-    virtual Car operator>>(AbstractReader &) = 0;
+    virtual Car operator>>(Car&) = 0;
     virtual operator bool() = 0;
-private:
-    std::ifstream fin;
 };
+
+Car operator>>(std::istream&,Car&);
 
 #endif // ABSTRACTREADER_H

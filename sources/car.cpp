@@ -30,6 +30,12 @@ Car &Car::operator=(Car&& tmp)
     return *this;
 }
 
+std::ostream& operator<<(std::ostream &out, Car c1)
+{
+    out << c1.repr();
+    return out;
+}
+
 std::string Car::repr()
 {
     std::string tmp;
@@ -74,8 +80,4 @@ bool operator<(const Car &c1,const Car &c2)
     return c1.year < c2.year;
 }
 
-std::ostream& operator<< (std::ostream &out,Car &c1)
-{
-    out << c1.repr();
-    return out;
-}
+

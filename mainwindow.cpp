@@ -50,12 +50,12 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    /////
+    //////
     Car c;
-    CSVReader rd("C:\\Users\\Kirill\\Documents\\CarFinder\\cars.txt");
-    &rd >> c;
+    JSONReader rd("./cars_exmpl.json");
+    rd >> c;
     //while (rd >> c)
-    //std::cout << c << std::endl;
+    std::cout << c << std::endl;
 }
 
 MainWindow::~MainWindow()
