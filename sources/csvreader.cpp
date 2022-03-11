@@ -31,3 +31,14 @@ std::vector<std::vector<std::string>> CSVReader::read()
     this->fin.close();
     return out;
 }
+
+Car &CSVReader::operator >>(AbstractReader &)
+{
+    std::string str_buff;
+    std::getline(this->fin,str_buff);
+    this->strCount ++;
+    auto tokens = split(str_buff, ';');
+    this->fin.close();
+    auto out = new Car(tokens);
+    return *out;
+}

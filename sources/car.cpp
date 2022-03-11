@@ -12,7 +12,6 @@ Car::Car(std::vector<std::string>tokens)
 
 Car::Car(std::string model, int color, int year)
 {
-
     this->model = model;
     this->color = color;
     this->year = year;

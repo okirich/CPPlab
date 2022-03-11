@@ -35,7 +35,8 @@ std::vector<Car> carCreator(AbstractReader &db)
 {
     std::vector<std::vector<std::string>> tmp = db.read();
     std::vector<Car> cars;
-    // создание Сar объектов из файла CSV
+    // создание Сar объектов из файла
+
     for (auto strVect : tmp)
     {
         cars.emplace_back(Car(strVect));
