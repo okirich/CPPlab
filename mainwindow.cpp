@@ -54,8 +54,10 @@ MainWindow::MainWindow(QWidget *parent)
     Car c;
     JSONReader rd("./cars_exmpl.json");
     rd >> c;
-    //while (rd >> c)
     std::cout << c << std::endl;
+    rd >> c;
+    while (rd >> c)
+        std::cout << c << std::endl;
 }
 
 MainWindow::~MainWindow()

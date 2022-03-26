@@ -17,6 +17,7 @@ public:
     operator bool() override;
 private:
     std::ifstream fin;
+    int strCount;
 };
 
 #endif // JSONREADER_H

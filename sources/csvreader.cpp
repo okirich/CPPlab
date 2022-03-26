@@ -25,7 +25,7 @@ std::vector<std::vector<std::string>> CSVReader::read()
     std::string str_buff;
     while (std::getline(this->fin,str_buff)) {
         this->strCount ++;
-        auto tokens = checkCSV(str_buff);
+        auto tokens = checkBuffer(str_buff);
         out.emplace_back(tokens);
     }
     this->fin.close();
@@ -37,7 +37,7 @@ Car CSVReader::operator >>(Car& out)
     std::string str_buff;
     std::getline(this->fin,str_buff);
     this->strCount ++;
-    auto tokens = checkCSV(str_buff);
+    auto tokens = checkBuffer(str_buff);
     this->fin.close();
     out = Car(tokens);
     return out;
@@ -45,5 +45,8 @@ Car CSVReader::operator >>(Car& out)
 
 CSVReader::operator bool()
 {
-    return true;
+    if (this->is_open())
+        if(!this->fin.eof())
+            return true;
+    return false;
 }

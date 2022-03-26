@@ -20,6 +20,6 @@ signals:
     void valueChanged(QString msg);
 };
 
-std::vector<std::string> checkCSV(std::string str_buff);
+std::vector<std::string> checkBuffer(std::string str_buff);
 
 #endif // MYERROR_H

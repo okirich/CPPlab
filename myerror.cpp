@@ -2,7 +2,7 @@
 
 myerror::myerror(QObject *parent, std::string errMsg) : QObject(parent)
 {
-    this->message = "defalut";
+    this->message = QString::fromStdString(errMsg);
 }
 
 void myerror::setErrorMsg(QString msg)
@@ -11,7 +11,7 @@ void myerror::setErrorMsg(QString msg)
     emit valueChanged(msg);
 }
 
-std::vector<std::string> checkCSV(std::string str_buff)
+std::vector<std::string> checkBuffer(std::string str_buff)
 {
     if (str_buff.empty())
             throw new myerror(nullptr,"DB corrupted!");

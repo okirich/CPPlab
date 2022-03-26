@@ -36,9 +36,17 @@ std::vector<std::vector<std::string> > JSONReader::read()
 
 Car JSONReader::operator>>(Car& out)
 {
+    bool flag = true;
+    std::string str_buff;
+    while(flag){
+        std::getline(this->fin,str_buff);
+        if(str_buff.find('{')!=std::string::npos)
+            flag = false;
+        this->strCount ++;
+    }
     json j;
     std::vector<std::string> tokenString;
-    j = json::parse(this->fin);
+    j = json::parse(str_buff);
     tokenString.emplace_back(j[0]["id"].dump());
     tokenString.emplace_back(j[0]["model"].dump());
     tokenString.emplace_back(j[0]["color"].dump());
@@ -49,5 +57,8 @@ Car JSONReader::operator>>(Car& out)
 
 JSONReader::operator bool()
 {
-    return true;
+    if (this->is_open())
+        if(!this->fin.eof())
+            return true;
+    return false;
 }

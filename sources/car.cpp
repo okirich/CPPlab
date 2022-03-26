@@ -30,6 +30,13 @@ Car &Car::operator=(Car&& tmp)
     return *this;
 }
 
+Car::operator bool()
+{
+    if (this->model=="" or this->color == -1 or this->year == -1)
+        return false;
+    return true;
+}
+
 std::ostream& operator<<(std::ostream &out, Car c1)
 {
     out << c1.repr();
