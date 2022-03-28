@@ -4,7 +4,6 @@
 #include <string>
 #include <map>
 
-
 const std::map<int,std::string> Colors = {
     {0,"RED"},
     {1,"GREEN"},

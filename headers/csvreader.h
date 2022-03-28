@@ -3,7 +3,7 @@
 
 #include "../headers/abstractreader.h"
 #include "../headers/splitFunc.h"
-#include "myerror.h"
+#include "car.h"
 
 class CSVReader : public AbstractReader
 {
@@ -12,6 +12,8 @@ public:
     ~CSVReader();
     bool is_open() override;
     std::vector<std::vector<std::string>> read() override;
+    bool operator>>(Car&) override;
+    operator bool() override;
 private:
     std::ifstream fin;
     int strCount;

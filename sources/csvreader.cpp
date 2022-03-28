@@ -25,9 +25,28 @@ std::vector<std::vector<std::string>> CSVReader::read()
     std::string str_buff;
     while (std::getline(this->fin,str_buff)) {
         this->strCount ++;
-        auto tokens = split(str_buff, ';');
+        auto tokens = checkBuffer(str_buff);
         out.emplace_back(tokens);
     }
     this->fin.close();
     return out;
+}
+
+bool CSVReader::operator >>(Car& out)
+{
+    std::string str_buff;
+    std::getline(this->fin,str_buff);
+    this->strCount ++;
+    auto tokens = checkBuffer(str_buff);
+    this->fin.close();
+    out = Car(tokens);
+    return out;
+}
+
+CSVReader::operator bool()
+{
+    if (this->is_open())
+        if(!this->fin.eof())
+            return true;
+    return false;
 }
