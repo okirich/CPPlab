@@ -32,7 +32,7 @@ std::vector<std::vector<std::string>> CSVReader::read()
     return out;
 }
 
-Car CSVReader::operator >>(Car& out)
+bool CSVReader::operator >>(Car& out)
 {
     std::string str_buff;
     std::getline(this->fin,str_buff);

@@ -14,7 +14,7 @@ public:
     AbstractReader();
     virtual std::vector<std::vector<std::string>> read() = 0;
     virtual bool is_open() = 0;
-    virtual Car operator>>(Car&) = 0;
+    virtual bool operator>>(Car&) = 0;
     virtual operator bool() = 0;
 };
 
