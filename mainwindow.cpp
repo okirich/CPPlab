@@ -35,7 +35,8 @@ std::vector<Car> carCreator(AbstractReader &db)
 {
     std::vector<std::vector<std::string>> tmp = db.read();
     std::vector<Car> cars;
-    // создание Сar объектов из файла CSV
+    // создание Сar объектов из файла
+
     for (auto strVect : tmp)
     {
         auto tmp = Car(strVect);
@@ -50,9 +51,12 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-//    auto db = CSVReader(fileName);
-//    cars = carCreator(db);
-//    tabelReload(*ui->tableWidget,cars);
+
+    //////
+    Car c;
+    JSONReader rd("./cars_exmpl.json");
+    while (rd >> c)
+        std::cout << c << std::endl;
 }
 
 MainWindow::~MainWindow()

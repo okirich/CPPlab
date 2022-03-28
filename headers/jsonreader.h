@@ -2,8 +2,7 @@
 #define JSONREADER_H
 
 #include "../headers/abstractreader.h"
-#include "myerror.h"
-
+#include "car.h"
 #include <nlohmann/json.hpp>
 using json = nlohmann::json;
 
@@ -14,8 +13,11 @@ public:
     ~JSONReader();
     bool is_open() override;
     std::vector<std::vector<std::string>> read() override;
+    bool operator>>(Car&) override;
+    operator bool() override;
 private:
     std::ifstream fin;
+    int strCount;
 };
 
 #endif // JSONREADER_H

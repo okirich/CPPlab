@@ -73,7 +73,7 @@ void secondwindow::on_OkBtn_clicked()
         auto tmp1 = Car(tmp).repr();
         db.write(tmp1);
     }  catch (const std::invalid_argument& ia) {
-        myerror err;
+        myerror err = myerror();
         connect(&err,SIGNAL(valueChanged(QString)),this->parent()->findChild<mytextbrowser *>("error")\
                 ,SLOT(errorReceived(QString)));
         err.setErrorMsg("<year> must be int!");
