@@ -2,12 +2,24 @@
 
 Car::Car(std::vector<std::string>tokens)
 {
-    this->id = std::stoi(tokens[0]);
-    this->model = tokens[1];
-    this->color = std::stoi(tokens[2]);
-    this->year = std::stoi(tokens[3]);
-    count++;
-    this->id = count;
+    try {
+        if (tokens.empty()){
+            throw std::invalid_argument("Corrupted data!");
+        }
+        this->id = std::stoi(tokens[0]);
+        this->model = tokens[1];
+        this->color = std::stoi(tokens[2]);
+        this->year = std::stoi(tokens[3]);
+        count++;
+        this->id = count;
+    }  catch (std::invalid_argument err) {
+        this->id = -1;
+        this->model = "";
+        this->color = -1;
+        this->year = -1;
+        std::cerr << err.what() << std::endl;
+    }
+
 }
 
 Car::Car(std::string model, int color, int year)

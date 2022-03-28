@@ -38,7 +38,9 @@ std::vector<Car> carCreator(AbstractReader &db)
     // создание Сar объектов из файла CSV
     for (auto strVect : tmp)
     {
-        cars.emplace_back(Car(strVect));
+        auto tmp = Car(strVect);
+        if (tmp.getId()!=-1)
+            cars.emplace_back(tmp);
     }
     return cars;
 };
